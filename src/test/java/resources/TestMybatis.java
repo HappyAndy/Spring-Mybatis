@@ -30,7 +30,7 @@ public class TestMybatis {
 		this.muserService = muserService;
 	}
 	
-	@Test
+	//@Test
 	public void test1() {
 		
 		List<MUser> list = muserService.getAll();
