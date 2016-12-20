@@ -18,4 +18,6 @@ public interface MUserMapper {
     int updateByPrimaryKey(MUser record);
     
     List<MUser> getAll();
+
+    List<MUser> selectByName(String name);
 }

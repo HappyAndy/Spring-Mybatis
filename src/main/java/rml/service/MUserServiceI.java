@@ -6,13 +6,15 @@ import rml.model.MUser;
 
 public interface MUserServiceI {
 
-	List<MUser> getAll();
-	
-	MUser selectByPrimaryKey(String id);
-	
+    List<MUser> getAll();
+
+    MUser selectByPrimaryKey(String id);
+
     int insert(MUser muser);
-    
+
     int update(MUser muser);
-    
+
     int delete(String id);
+
+    List<MUser> getMUserByName(String name);
 }

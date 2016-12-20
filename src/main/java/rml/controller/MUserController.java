@@ -14,7 +14,7 @@ import rml.model.MUser;
 import rml.service.MUserServiceI;
 
 @Controller
-@RequestMapping("/muserController")
+@RequestMapping("/mvc")
 public class MUserController {
 
 	private MUserServiceI muserService;
@@ -31,7 +31,7 @@ public class MUserController {
 	@RequestMapping(value="/listUser")
 	public String listUser(HttpServletRequest request) {
 		
-		List <MUser> list = muserService.getAll();
+		List <MUser> list = muserService.getMUserByName("zyk");
 		request.setAttribute("userlist", list);
 		return "listUser";
 	}
@@ -42,7 +42,7 @@ public class MUserController {
 		String id = UUID.randomUUID().toString();
 		muser.setId(id);
 		muserService.insert(muser);
-		return "redirect:/muserController/listUser.do";
+		return "redirect:/mvc/listUser.do";
 	}
 	
 	@RequestMapping(value="/deleteUser")
@@ -64,6 +64,6 @@ public class MUserController {
 	public String updateUser(MUser muser) {
 		
 		muserService.update(muser);
-		return "redirect:/muserController/listUser.do";
+		return "redirect:/mvc/listUser.do";
 	}
 }
