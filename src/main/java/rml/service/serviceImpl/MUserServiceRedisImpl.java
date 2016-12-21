@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import rml.dao.MUserMapper;
 import rml.model.MUser;
 import rml.service.MUserServiceI;
-import rml.utils.ProtoStuffSerializerUtil;
+import rml.utils.protostuff.ProtoStuffSerializerUtil;
 
 import java.util.List;
 

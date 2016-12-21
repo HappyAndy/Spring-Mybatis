@@ -274,6 +274,22 @@
             <version>1.16.12</version>
         </dependency>
 
+        <!-- 谷歌缓存Guava Cache是一种本地缓存实现，支持多种缓存过期策略。性能好，简单易用
+        https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-pool2 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+
+
     </dependencies>
 
 

@@ -14,7 +14,7 @@ import rml.service.MUserServiceI;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class) // = extends SpringJUnit4ClassRunner
-@ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-mybatis.xml" })
+@ContextConfiguration(locations = { "classpath:spring/spring.xml", "classpath:spring-mybatis.xml" })
 public class TestMybatis {
 
 	private static final Logger logger = Logger.getLogger(TestMybatis.class);
