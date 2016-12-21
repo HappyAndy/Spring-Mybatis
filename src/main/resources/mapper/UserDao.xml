@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rml.dao.UserDao">
+    <!--查找-->
+    <select id="findOneById" resultType="User" parameterType="String">
+    SELECT
+    *
+    FROM
+    `user`
+    WHERE
+    login_id = #{Id}
+</select>
+
+    <!--增加语句-->
+    <insert id="add" parameterType="User">
+    INSERT INTO
+    `user`
+    (`login_id`,`name`,`age`,`sex`,`duty`,`cell_number`,`photo_url`,`pwd`,`used`)
+    VALUES
+    (#{loginId},#{name},#{age},#{sex},#{duty},#{cellNumber},#{photoUrl},#{pwd},#{used})
+</insert>
+
+    <!-- 删除 -->
+    <update id="del" parameterType="User">
+        UPDATE
+        `user`
+        SET
+        `used`=FALSE
+        WHERE
+        `login_id`=#{loginId};
+    </update>
+
+    <!-- 更新用户信息 -->
+    <update id="update" parameterType="User">
+        UPDATE
+        `user`
+        SET
+        `name`=#{name}, `age`=#{age}, `sex`=#{sex}, `duty`=#{duty}, `cell_number`=#{cellNumber}, `photo_url`=#{photoUrl}
+        WHERE
+        `login_id`=#{loginId};
+    </update>
+
+    <!--更新session的id-->
+    <update id="updateLoginSession">
+      UPDATE
+        `user`
+      SET
+        `session_id`=#{sessionId}
+      WHERE
+        `login_id`=#{loginId};
+    </update>
+</mapper>
