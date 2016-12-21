@@ -12,16 +12,16 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * @author
  * @Title: RedisClientTemplate.java
  * @copyright
  * @Package com.cy.redis
  * @Description: 用于操作redis取值、存值操作的工具类
- * @author
  * @date 2016-10-21 下午04:21:59
  */
 public class RedisClientTemplate {
 
-    private static final org.slf4j.Logger log=LoggerFactory.getLogger(RedisClientTemplate.class);
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(RedisClientTemplate.class);
 
     @Autowired
     private RedisDataSource redisDataSource;
@@ -34,8 +34,8 @@ public class RedisClientTemplate {
         this.redisDataSource = redisDataSource;
     }
 
-    public void disconnect(){
-        ShardedJedis shardedJedis=redisDataSource.getRedisClient();
+    public void disconnect() {
+        ShardedJedis shardedJedis = redisDataSource.getRedisClient();
         shardedJedis.disconnect();
     }
 
@@ -44,19 +44,19 @@ public class RedisClientTemplate {
      * @author Mr.chen
      * @date 2016-10-21 下午04:37:06
      */
-    public String set(String key, String value){
-        String result=null;
-        ShardedJedis shardedJedis=redisDataSource.getRedisClient();
-        if(shardedJedis==null){
+    public String set(String key, String value) {
+        String result = null;
+        ShardedJedis shardedJedis = redisDataSource.getRedisClient();
+        if (shardedJedis == null) {
             return result;
         }
-        boolean broken=false;
+        boolean broken = false;
         try {
-            result=shardedJedis.set(key, value);
+            result = shardedJedis.set(key, value);
         } catch (Exception e) {
-            broken=true;
+            broken = true;
             e.printStackTrace();
-        }finally{
+        } finally {
             redisDataSource.returnResource(shardedJedis, broken);
         }
 
@@ -228,8 +228,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 将值 value 关联到 key ，并将 key 的生存时间设为 seconds (以秒为单位)
+     *
      * @param key
      * @param seconds
      * @param value
@@ -253,8 +255,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 将 key 所储存的值减去减量 integer
+     *
      * @param key
      * @param integer
      * @return
@@ -277,8 +281,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 将 key 中储存的数字值减一。
+     *
      * @param key
      * @return
      */
@@ -300,8 +306,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 将 key 所储存的值加上增量 integer
+     *
      * @param key
      * @param integer
      * @return
@@ -324,8 +332,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 将 key 中储存的数字值增一
+     *
      * @param key
      * @return
      */
@@ -347,9 +357,11 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 如果 key 已经存在并且是一个字符串， APPEND 命令将 value 追加到 key 原来的值的末尾。
      * 如果 key 不存在， APPEND 就简单地将给定 key 设为 value ，就像执行 SET key value 一样。
+     *
      * @param key
      * @param value
      * @return
@@ -372,8 +384,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回名称为key的string的value的子串
+     *
      * @param key
      * @param start
      * @param end
@@ -397,8 +411,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 将哈希表 key 中的域 field 的值设为 value
+     *
      * @param key
      * @param field
      * @param value
@@ -422,8 +438,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回哈希表 key 中给定域 field 的值
+     *
      * @param key
      * @param field
      * @return
@@ -446,8 +464,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 同时将多个 field-value (域-值)对设置到哈希表 key 中。
+     *
      * @param key
      * @param hash
      * @return
@@ -470,8 +490,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回哈希表 key 中，一个或多个给定域的值
+     *
      * @param key
      * @param fields
      * @return
@@ -494,8 +516,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 为哈希表 key 中的域 field 的值加上增量 value
+     *
      * @param key
      * @param field
      * @param value
@@ -519,8 +543,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 查看哈希表 key 中，给定域 field 是否存在。
+     *
      * @param key
      * @param field
      * @return
@@ -543,8 +569,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 删除key
+     *
      * @param key
      * @return
      */
@@ -566,8 +594,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 删除哈希表 key 中的一个或多个指定域。
+     *
      * @param key
      * @param field
      * @return
@@ -590,8 +620,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回哈希表 key 中域的数量。
+     *
      * @param key
      * @return
      */
@@ -613,8 +645,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回哈希表 key 中的所有域。
+     *
      * @param key
      * @return
      */
@@ -636,8 +670,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回哈希表 key 中所有域的值。
+     *
      * @param key
      * @return
      */
@@ -659,8 +695,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回哈希表 key 中，所有的域和值。
+     *
      * @param key
      * @return
      */
@@ -684,8 +722,10 @@ public class RedisClientTemplate {
     }
 
     // ================list ====== l表示 list或 left, r表示right====================
+
     /**
      * 将一个或多个值 value 插入到列表 key 的表尾(最右边)
+     *
      * @param key
      * @param string
      * @return
@@ -708,8 +748,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 将一个或多个值 value 插入到列表 key 的表头
+     *
      * @param key
      * @param string
      * @return
@@ -732,8 +774,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回列表 key 的长度。
+     *
      * @param key
      * @return
      */
@@ -755,8 +799,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回列表 key 中指定区间内的元素，区间以偏移量 start 和 stop 指定
+     *
      * @param key
      * @param start
      * @param end
@@ -780,8 +826,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 只保留指定区间内的元素，不在指定区间之内的元素都将被删除
+     *
      * @param key
      * @param start
      * @param end
@@ -805,8 +853,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回列表 key 中，下标为 index 的元素。
+     *
      * @param key
      * @param index
      * @return
@@ -829,8 +879,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 将列表 key 下标为 index 的元素的值设置为 value
+     *
      * @param key
      * @param index
      * @param value
@@ -857,6 +909,7 @@ public class RedisClientTemplate {
 
     /**
      * 移除并返回列表 key 的头元素
+     *
      * @param key
      * @return
      */
@@ -878,8 +931,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 移除并返回列表 key 的尾元素。
+     *
      * @param key
      * @return
      */
@@ -904,8 +959,10 @@ public class RedisClientTemplate {
 
     //return 1 add a not exist value ,
     //return 0 add a exist value
+
     /**
      * 将一个或多个 member 元素加入到集合 key 当中
+     *
      * @param key
      * @param member
      * @return
@@ -928,8 +985,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回集合 key 中的所有成员。
+     *
      * @param key
      * @return
      */
@@ -954,6 +1013,7 @@ public class RedisClientTemplate {
 
     /**
      * 返回集合 key 的基数(集合中元素的数量)
+     *
      * @param key
      * @return
      */
@@ -975,8 +1035,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 将一个或多个 member 元素及其 score 值加入到有序集 key 当中
+     *
      * @param key
      * @param score
      * @param member
@@ -999,8 +1061,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回有序集 key 中，指定区间内的成员
+     *
      * @param key
      * @param start
      * @param end
@@ -1023,8 +1087,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 移除有序集 key 中的一个或多个成员，不存在的成员将被忽略
+     *
      * @param key
      * @param member
      * @return
@@ -1046,8 +1112,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 为有序集 key 的成员 member 的 score 值加上增量 member 。
+     *
      * @param key
      * @param score
      * @param member
@@ -1072,8 +1140,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 回有序集 key 中成员 member 的排名。其中有序集成员按 score 值递增(从小到大)顺序排列
+     *
      * @param key
      * @param member
      * @return
@@ -1097,8 +1167,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回有序集 key 的基数
+     *
      * @param key
      * @return
      */
@@ -1121,8 +1193,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 返回有序集 key 中，成员 member 的 score 值。
+     *
      * @param key
      * @param member
      * @return
@@ -1149,6 +1223,7 @@ public class RedisClientTemplate {
 
     /**
      * 返回有序集 key 中， score 值在 min 和 max 之间(默认包括 score 值等于 min 或 max )的成员的数量
+     *
      * @param key
      * @param min
      * @param max
@@ -1176,6 +1251,7 @@ public class RedisClientTemplate {
 
     /**
      * 批量存储
+     *
      * @param key
      * @param value
      * @return
@@ -1199,8 +1275,37 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
+    /**
+     * 整合protostuf
+     * @param key
+     * @param min 缓存过期时间
+     * @param value
+     * @return
+     */
+    public String set(byte[] key, int min, byte[] value) {
+        String result = null;
+        ShardedJedis shardedJedis = redisDataSource.getRedisClient();
+        if (shardedJedis == null) {
+            return result;
+        }
+        boolean broken = false;
+        try {
+
+            result = shardedJedis.setex(key, min, value);
+
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(shardedJedis, broken);
+        }
+        return result;
+    }
+
     /**
      * 获取多个key的值
+     *
      * @param key
      * @return
      */
@@ -1223,8 +1328,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 判断多个key存在
+     *
      * @param key
      * @return
      */
@@ -1330,6 +1437,7 @@ public class RedisClientTemplate {
 
     /**
      * 批量增加到hash
+     *
      * @param key
      * @param field
      * @param value
@@ -1354,8 +1462,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 批量获取field域值
+     *
      * @param key
      * @param field
      * @return
@@ -1443,8 +1553,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
      * 批量删除hash的key
+     *
      * @param key
      * @param field
      * @return
@@ -1469,6 +1581,7 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     public Long rpush(byte[] key, byte[] string) {
         Long result = null;
         ShardedJedis shardedJedis = redisDataSource.getRedisClient();
@@ -1574,6 +1687,7 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     public Long lrem(byte[] key, int count, byte[] value) {
         Long result = null;
         ShardedJedis shardedJedis = redisDataSource.getRedisClient();
@@ -1636,8 +1750,10 @@ public class RedisClientTemplate {
         }
         return result;
     }
+
     /**
-     *   批量增加到set
+     * 批量增加到set
+     *
      * @param key
      * @param member
      * @return

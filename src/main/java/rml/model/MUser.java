@@ -13,6 +13,7 @@ public class MUser {
 
     private String address;
 
+
 }
 
 //
