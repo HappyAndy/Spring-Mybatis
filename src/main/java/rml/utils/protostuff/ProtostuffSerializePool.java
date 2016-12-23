@@ -4,11 +4,7 @@ import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
 /**
- * @author tangjie<https://github.com/tang-jie>
- * @filename:ProtostuffSerializePool.java
- * @description:ProtostuffSerializePool功能模块
- * @blogs http://www.cnblogs.com/jietang/
- * @since 2016/10/7
+ * 序列化池
  */
 public class ProtostuffSerializePool {
 

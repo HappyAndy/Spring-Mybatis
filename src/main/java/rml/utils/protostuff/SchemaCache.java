@@ -13,12 +13,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * 定义Schema，这个是因为Protostuff-Runtime实现了无需预编译对Java bean进行protobuf序列化/反序列化的能力。
  * 我们可以把运行时的Schema缓存起来，提高序列化性能
- *
- * @author tangjie<https://github.com/tang-jie>
- * @filename:SchemaCache.java
- * @description:SchemaCache功能模块
- * @blogs http://www.cnblogs.com/jietang/
- * @since 2016/10/7
  */
 public class SchemaCache {
     private static class SchemaCacheHolder {
